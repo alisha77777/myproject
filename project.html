@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="valid.css">
+</head>
+
+<body>
+    <form action="" name="myform" onsubmit="return validateForm()" method="post">
+        <div class="formdesign" id="name">
+            Name<input type="name" class="fname" name="fname"><b><span class="formerror"></span></b>
+        </div>
+        <div class="formdesign" id="email">
+            Email<input type="email" class="femail" name="femail"><b><span class="formerror"></span></b>
+        </div>
+        <div class="formdesign" id="phone">
+            Phone<input type="phone" class="fphone" name="fphone"><b><span class="formerror"></span></b>
+        </div>
+        <div class="formdesign" id="password">
+            PASSWORD<input type="password" class="fpassword" name="fpassword"><b><span class="formerror"></span></b>
+        </div>
+        <div class="formdesign" id="cpassword">
+            CONFIRM PASSWORD<input type="text" class="fname" name="fname"><b><span class="formerror"></span></b>
+        </div><input type="submit" class="btn" value="submit">
+    </form>
+</body>
+<script>
+    function seterror(id, error) {
+        element = document.getElementById(id);
+        element.getElementsByClassName('formerror')[0].innerHTML = error;
+    }
+
+    function validateForm() {
+        var returnval = true;
+        var name = document.forms["myform"]["fname"].value;
+        if (name.length < 2) {
+            seterror("name", "length is too short")
+            returnval = false;
+        }
+        var email = document.forms["myform"]["femail"].value;
+        if (email.length > 15) {
+            seterror("email", "email is too long")
+            returnval = false;
+        }
+        var phone = document.forms["myform"]["fphone"].value;
+        if (phone.length != 10) {
+            seterror("phone", "number should be 10 digit")
+            returnval = false;
+        }
+        return returnval;
+    }
+</script>
+
+</html>
